@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+        content="Full-Order Sampling-Based MPC for Torque-Level Locomotion Control via Diffusion-Style Annealing">
+    <meta name="keywords" content="Diffusion, MPC, Locomotion Control">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        Full-Order Sampling-Based MPC for Torque-Level Locomotion Control via Diffusion-Style Annealing
+    </title>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/favicon.svg">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">Full-Order Sampling-Based MPC for Torque-Level
+                            Locomotion Control via Diffusion-Style Annealing</h1>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                                Anonymous Authors,
+                            </span>
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- Code Link. -->
+                                <span class="link-block">
+                                    <a href="https://github.com/anonymous-dial-mpc/dial-mpc"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section class="hero teaser">
+        <div class="container is-max-desktop">
+            <div class="content has-text-centered">
+                <h2 class="title is-3">Overview Video</h2>
+                <video poster="" id="intro" autoplay controls loop playsinline height="100%">
+                    <source src="./static/videos/teaser_video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </section> -->
+
+    <section class="hero is-light is-small">
+        <div class="hero-body">
+            <div class="container">
+                <h2 class="title is-3 has-text-centered">Highlights</h2>
+                <div class="columns is-multiline">
+                    <div class="column is-one-third">
+                        <h3 class="title is-5 has-text-centered">Go2 Tracking (Real-World)</h3>
+                        <video poster="" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/gallop.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="column is-one-third">
+                        <h3 class="title is-5 has-text-centered">Go2 Precise Jump (Real-World)</h3>
+                        <video poster="" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/jump.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="column is-one-third">
+                        <h3 class="title is-5 has-text-centered">Go2 Jump (Real-world, viz in sim)</h3>
+                        <video poster="" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/go2_real_jump.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="column is-one-third">
+                        <h3 class="title is-5 has-text-centered">H1 Jogging (Sim)</h3>
+                        <video poster="" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/h1_jog.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="column is-one-third">
+                        <h3 class="title is-5 has-text-centered">Go2 Climb (Sim)</h3>
+                        <video poster="" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/go2_sim_climb.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="column is-one-third">
+                        <h3 class="title is-5 has-text-centered">H1 Push Light Box (Sim)</h3>
+                        <video poster="" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/h1_push_light_crate.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="column is-one-third">
+                        <h3 class="title is-5 has-text-centered">Go2 Tracking (Real-world, viz in sim)</h3>
+                        <video poster="" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/go2_real_run.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="column is-one-third">
+                        <h3 class="title is-5 has-text-centered">Go2 Tracking Forward (Sim)</h3>
+                        <video poster="" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/go2_sim_forward.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="column is-one-third">
+                        <h3 class="title is-5 has-text-centered">Go2 Tracking Backward (Sim)</h3>
+                        <video poster="" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/go2_sim_backward.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Due to high dimensionality and non-convexity,
+                            real-time optimal control using full-order dynamics models
+                            for legged robots is challenging. Therefore, Nonlinear Model
+                            Predictive Control (NMPC) approaches are often limited to
+                            reduced-order models or local approximations of full models. Sampling-based MPC has shown potential in nonconvex even discontinuous problems, but often yields
+                            suboptimal solutions with high variance, which limits its applications in high-dimensional locomotion. This work introduces
+                            DIAL-MPC (Diffusion-Inspired Annealing for Legged MPC),
+                            a sampling-based MPC framework with a novel diffusion-style
+                            annealing process. Such an annealing process is supported by
+                            our theoretical landscape analysis of Model Predictive Path
+                            Integral Control (MPPI) and the connection between MPPI and
+                            single-step diffusion. Algorithmically, DIAL-MPC iteratively
+                            refines solutions online and achieves both global coverage
+                            and local convergence. In quadrupedal torque-level control
+                            tasks, DIAL-MPC reduces the tracking error of standard
+                            MPPI by 13.4 times and outperforms reinforcement learning
+                            (RL) policies by 40% in challenging jumping tasks <b>without
+                                any training</b>. In particular, DIAL-MPC enables precise real-
+                            world quadrupedal jumping with payload. To the best of our
+                            knowledge, DIAL-MPC is the first training-free method that
+                            optimizes directly over full-order quadruped dynamics in real-time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--/ Abstract. -->
+
+            <!-- Paper video. -->
+            <!-- Paper video. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <!-- include a figure -->
+                    <figure class="image is-flex is-justify-content-center">
+                        <img src="./static/images/teaser.png" alt="Teaser" style="max-width: 50%;">
+                    </figure>
+                    <p>
+                        DIAL-MPC is a sampling-based MPC framework with a novel diffusion-style annealing process.
+                    </p>
+                </div>
+            </div>
+
+
+
+            <!--/ Paper video. -->
+        </div>
+    </section>
+
+    <!-- Why: explain why model-based diffusion is important -->
+    <!-- 1. generalize beyond the data  with model information -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content">
+                        <h2 class="title is-3">What is DIAL-MPC?</h2>
+                        <p>
+                            <b>
+                                DIAL-MPC is a <u>training-free</u> full-order torque-level legged robot controller:
+                            </b>
+                            DIAL-MPC is an MPC framework that can optimize over full-order legged robot dynamics in
+                            real-time without heavy assumptions on dynamics and cost functions (i.e., plug-and-play with any model and cost function). 
+                            It doesn't require reduced-order modeling, linearization, convexification, or predefined contact sequences.
+                            To our knowledge, this is the first framework achieving both real-time flexibility
+                            and RL-level agility in legged locomotion.
+                        </p>
+                        <p>
+                            <b>
+                                Diffusion-Inspired Annealing for Legged MPC (DIAL-MPC) = Sampling-based MPC +
+                                Diffusion-style Annealing:
+                            </b>
+                            To achieve efficient real-time locomotion, DIAL-MPC extends MPPI with a diffusion-style
+                            annealing process in both <u>trajectory-level</u> and <u>action-level</u> to achieve better global coverage and local convergence.
+                        </p>
+                        <!-- include video traj_annealing_combined.mp4 -->
+
+                        <figure class="image">
+                            <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+                                <source src="./static/videos/traj_annealing_combined.mp4" type="video/mp4">
+                            </video>
+                            <!-- add caption -->
+                            <p>
+                                Trajectory-level annealing: at certain time step, DIAL-MPC optimizes the planned trajectory iteratively. 
+                            </p>
+                        </figure>
+                        <!-- anther video action_annealing_combined.mp4 -->
+
+                        <figure class="image">
+                            <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+                                <source src="./static/videos/action_anneling.mp4" type="video/mp4">
+                            </video>
+                            <p>
+                                Action-level annealing: across different time step, the same action is optimized when doing receding horizon with a scheduled sampling kernel. 
+                            </p>
+                        </figure>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- How: explain how to implement model-based diffusion -->
+    <!-- 1. score function -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content">
+                        <h2 class="title is-3">How Does DIAL-MPC Work?</h2>
+                    </div>
+                    <p>
+                        <b>
+                            MPPI is a single-stage diffusion process.
+                        </b>
+                        Given the following non-convex cost function, MPPI aims to optimize over p0.
+                        Our theoretical analysis reveals that MPPI is a single-stage diffusion process, 
+                        i.e., each step of MPPI can be viewed as an ascent step on a noise-conditioned score function of p0 convoluted with the sampling kernel,
+                        where the score function is approximated with Monte Carlo sampling.
+                    </p>
+                    <figure class="image is-flex is-justify-content-center">
+                        <img src="./static/images/demo_task.png" alt="Demo Task" style="max-width: 50%;">
+                    </figure>
+                    <p>
+                        <b>
+                            MPPI suffers from suboptimal solutions or high variance.
+                        </b>
+                        Due to the sparsity and non-smooth nature of p0, MPPI either optimize a over-smoothed function (sampling kernel too large) or a highly non-smooth function (sampling kernel too small), leading to suboptimal solutions or high variance. Diffusion process overcomes this problem by iteratively refining solutions over a series of smoothing levels.
+                    </p>
+                    <figure class="image is-flex is-justify-content-center">
+                        <img src="./static/images/demo_forward.png" alt="DIAL-MPC" style="max-width: 50%;">
+                    </figure>
+                    <p>
+                        <b>
+                            DIAL-MPC use a multi-stage diffusion process for better coverage and convergence.
+                        </b>
+                        Compared with MPPI which only uses a single-stage diffusion process, DIAL-MPC iteratively
+                        refines solutions in a diffusion manner, leading to better coverage and convergence for
+                        contact-rich locomotion tasks.
+                    </p>
+                    <figure class="image is-flex is-justify-content-center">
+                        <img src="./static/images/demo_compare.png" alt="DIAL-MPC" style="max-width: 50%;">
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- compare with model-free RL: what's the pros and cons? -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content">
+                        <h2 class="title is-3">Compare With Other Methods</h2>
+                        <p>
+
+                            <b>
+                                Compared with RL:
+                            </b>
+                            DIAL-MPC is trainig-free and
+                            can achieve higher precision control in tasks that require test-time zero-shot adaptation (e.g., robots with payload), thanks to its model-based nature and diffusion-style annealing process.
+                        </p>
+                        <p>
+                            <b>
+                                Compared with Standard Sampling-based MPC:
+                            </b>
+                            DIAL-MPC achieve more agile motion and higher precision control with better sampling
+                            strategy inspired by diffusion models.
+                        </p>
+                        <p>
+                            <b>
+                                Compared with Nonlinear MPC:
+                            </b>
+                            DIAL-MPC can handle full-order dynamics and arbitrary cost functions in a plug-and-play
+                            manner, while existing MPC methods require either reduced-order modeling, specialized cost functions, linearization/convexification, or predefined contact sequences.
+                        </p>
+                        <table border="1">
+                            <tr>
+                                <th>Aspect</th>
+                                <th>DIAL-MPC</th>
+                                <th>Sampling-based MPC Baselines</th>
+                                <th>Nonlinear MPC</th>
+                                <th>Model-Free RL</th>
+                            </tr>
+                            <tr>
+                                <td>Agile Motion</td>
+                                <td>Yes</td>
+                                <td>No</td>
+                                <td>Need careful system identification and solver design</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>High-precision Control</td>
+                                <td>Yes</td>
+                                <td>No</td>
+                                <td>Yes</td>
+                                <td>Need careful reward engineering and training design</td>
+                            </tr>
+                            <tr>
+                                <td>Full-Order Dynamics</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>No, especially with contact</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>Aribitrary Cost</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>No</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>Training-Free</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>No</td>
+                            </tr>
+                            <tr>
+                                <td>Test-time generalization</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Need extra components in training stage</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+                        <p>
+                            Template comes from
+                            <a href="https://github.com/nerfies/nerfies.github.io">nerfies</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
